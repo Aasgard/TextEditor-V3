@@ -2,17 +2,17 @@ package command;
 
 import receiver.MoteurEdition;
 
-public class Copier implements Command {
+public class Supprimer implements Command {
 	
 	protected MoteurEdition em;
 	
-	public Copier(MoteurEdition newem){
+	public Supprimer(MoteurEdition newem){
 		em = newem;
 	}
 
 	@Override
 	public void execute() {	
-		em.copier();
+		em.supprimer();
 	}
 
 }

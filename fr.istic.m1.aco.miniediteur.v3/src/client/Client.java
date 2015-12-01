@@ -2,61 +2,77 @@ package client;
 
 import java.util.HashMap;
 
-import caretaker.Enregistreur;
+import careTaker.Enregistreur;
 import command.*;
 import observer.IHMObserver;
-import originator.*;
 import receiver.MoteurEdition;
+import originator.*;
 
+/**
+ * Classe principale : instancie et relie les diffÃ©rents composants de
+ * l'application.
+ */
 public class Client {
+	private static final int ZONE_TEXTE_ROWS = 20;
+	private static final int ZONE_TEXTE_COLS = 60;
 
-	private static MoteurEdition me;
-	private static IHMObserver ihmo;
-	private static HashMap<String, Command> commandes;
+	private static MoteurEdition em;
+	private static IHMObserver ihm;
 	private static Enregistreur enregistreur;
-	private static HashMap<String, CommandEnregistrable> commandesEnregistrables;
-	
+	private static HashMap<String, Command> commandes;
+	private static HashMap<String, CommandEnregistrable> commandEnregistrable;
+
 	public static void main(String[] args) throws Exception {
-		me = new MoteurEdition();
-		ihmo = new IHMObserver(me);
-		
+		// initialisation
+		em = new MoteurEdition();
+		ihm = new IHMObserver(em);
+
+		//Création de l'enregistreur
 		enregistreur = new Enregistreur();
 		
-		CouperEnregistrable couper = new CouperEnregistrable(me, enregistreur);
-		CopierEnregistrable copier = new CopierEnregistrable(me, enregistreur);
-		CollerEnregistrable coller = new CollerEnregistrable(me, enregistreur);
-		SaisirEnregistrable saisir = new SaisirEnregistrable(me, ihmo, enregistreur);
-		SelectionnerEnregistrable selectionner =  new SelectionnerEnregistrable(me, ihmo, enregistreur);
-		EffacerEnregistrable effacer = new EffacerEnregistrable(me, enregistreur);
-		
+		// crÃ©ation des commandes
 		commandes = new HashMap<String, Command>();
+		
+		CouperEnregistrable couper = new CouperEnregistrable(em, enregistreur);
+		CopierEnregistrable copier = new CopierEnregistrable(em, enregistreur);
+		CollerEnregistrable coller = new CollerEnregistrable(em, enregistreur);
+		SaisirEnregistrable saisir = new SaisirEnregistrable(em, ihm, enregistreur);
+		SelectionnerEnregistrable selectionner =  new SelectionnerEnregistrable(em, ihm, enregistreur);
+		EffacerEnregistrable effacer = new EffacerEnregistrable(em, enregistreur);
+		SupprimerEnregistrable supprimer = new SupprimerEnregistrable(em, enregistreur);
+		
 		commandes.put("couper", couper);
-		commandes.put("saisir", saisir);
-		commandes.put("coller", coller);
 		commandes.put("copier", copier);
-		commandes.put("effacer", effacer);
+		commandes.put("coller", coller);
 		commandes.put("selectionner", selectionner);
-		commandes.put("enregistrer", new Enregistrer(enregistreur));
-		commandes.put("stop", new Stop(enregistreur));
-		commandes.put("rejouer", new Rejouer(enregistreur));
+		commandes.put("saisir", saisir);
+		commandes.put("effacer", effacer);
+		commandes.put("supprimer", supprimer);
+		commandes.put("refaire", new Refaire(enregistreur));
+		commandes.put("defaire", new Defaire(enregistreur));
+		ihm.setCommands(commandes);
+
 		
-		commandesEnregistrables = new HashMap<String, CommandEnregistrable>();
-		commandesEnregistrables.put("couper", couper);
-		commandesEnregistrables.put("copier", copier);
-		commandesEnregistrables.put("coller", coller);
-		commandesEnregistrables.put("saisir", saisir);
-		commandesEnregistrables.put("selectionner", selectionner);
-		commandesEnregistrables.put("effacer", effacer);
+		// Création des commandes enregistrables
 		
-		enregistreur.setCommandesEnregistrable(commandesEnregistrables);
-		ihmo.setCommands(commandes);
-		me.registerObserver(ihmo);
+		commandEnregistrable = new HashMap<String, CommandEnregistrable>();
+		commandEnregistrable.put("couper", couper);
+		commandEnregistrable.put("copier", copier);
+		commandEnregistrable.put("coller", coller);
+		commandEnregistrable.put("saisir", saisir);
+		commandEnregistrable.put("selectionner", selectionner);
+		commandEnregistrable.put("effacer", effacer);
+		commandEnregistrable.put("supprimer", supprimer);
+		enregistreur.setCommandesEnregistrable(commandEnregistrable);
 		
+		// mise en place de l'observer
+		em.registerObserver(ihm);
+
+		// finalisation de l'ihm
 		/* Finalisation de l'IHM */
-		ihmo.createTextArea();
-		ihmo.loadButtons();
-		ihmo.launch();
-		
+		ihm.createTextArea();
+		ihm.loadButtons();
+		ihm.launch();
 	}
-	
+
 }

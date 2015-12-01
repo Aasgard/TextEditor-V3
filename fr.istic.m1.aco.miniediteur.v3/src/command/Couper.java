@@ -3,16 +3,16 @@ package command;
 import receiver.MoteurEdition;
 
 public class Couper implements Command {
+	
+	protected static MoteurEdition em;
+	
+	public Couper(MoteurEdition newem){
+		em = newem;
+	}
 
-	protected MoteurEdition me;
-	
-	public Couper(MoteurEdition moteure){
-		me = moteure;
+	@Override
+	public void execute() {
+		em.couper();
 	}
-	
-	public void execute(){
-		me.couper();
-		System.out.println("Commande COUPER : " + me.getPressePapier().getContenu().toString());
-	}
-	
+
 }

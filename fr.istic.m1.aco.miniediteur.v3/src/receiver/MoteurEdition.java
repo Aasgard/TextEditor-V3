@@ -6,35 +6,88 @@ import java.util.Iterator;
 import observer.Observer;
 import observer.Subject;
 
-public class MoteurEdition extends Subject implements IMoteurEdition {
+public class MoteurEdition extends Subject implements IMoteurEdition{
 
+	
 	private Buffer buffer;
 	private Selection selection;
 	private PressePapier pressePapier;
 	
-	public MoteurEdition() {
+
+	public MoteurEdition(){
 		observers = new ArrayList<Observer>();
 		this.buffer = new Buffer();
-		this.selection = new Selection(0, 0, "");
+		this.selection = new Selection();
 		this.pressePapier = new PressePapier("");
 	}
 	
+	/**
+	 * On met la sélection dans le PP.
+	 * On enlève le contenu de la sélection du buffer courant.
+	 * On réinitialise la sélection.
+	 */
 	@Override
-	public void coller() {
-		StringBuffer newcontenu = new StringBuffer(pressePapier.getContenu());
-		this.buffer.setBuffer(newcontenu, this.selection.getDebut(), this.selection.getLongueur()+this.selection.getDebut());	
-		selection.setDebut(selection.getDebut()+pressePapier.getContenu().length());
-		this.selection.initSelection();
-		notifyObservers();
+	public void couper() {
+		if(selection.getLongueur() > 0){
+			String contenuSelection = this.selection.getContenu();
+			pressePapier.setContenu(contenuSelection);
+			this.buffer.getContenu().delete(this.selection.getDebut(), this.selection.getDebut()+this.selection.getLongueur());
+			this.selection.initSelection();
+			notifyObservers();
+		}
 	}
-
+	
+	/**
+	 * On met la sélection dans le PP
+	 * On garde le contenu de la sélection du buffer courant sans modifier la sélection.
+	 */
 	@Override
 	public void copier() {
 		if(selection.getLongueur() > 0 ){
 			String contenuSelection = selection.getContenu();
 			pressePapier.setContenu(contenuSelection);
 			this.selection.initSelection();
+			notifyObservers();
 		}
+	}
+	
+	/**
+	 * On crée un nouvel objet de selection
+	 * prenant en paramètre le debut de la selection et sa longueur
+	 */
+	@Override
+	public void selectionner(Integer debut, Integer longueur) {
+		try{
+			this.selection.setDebut(debut);
+			this.selection.setLongueur(longueur);
+			this.selection.setContenu(this.buffer.getContenu().toString().substring(debut, debut+longueur));
+		}catch (Exception e){
+			System.out.println("Erreur de création : objet Sélection");
+		}
+	}
+	
+	/**
+	 * On insère le texte dans le buffer à l'endroit de la sélection.
+	 */
+	@Override
+	public void saisir(String texte){
+		this.buffer.setBuffer(new StringBuffer(texte), this.selection.getDebut(), this.selection.getLongueur()+this.selection.getDebut());
+		this.selection.setDebut(this.selection.getDebut()+texte.length());
+		notifyObservers();
+	}
+	
+	/**
+	 * On insère le contenu du presse papier dans le buffer
+	 * au niveau de la selection puis on déplace la selection à la fin de notre contenu coller
+	 */
+	@Override
+	public void coller() {
+		StringBuffer newcontenu = new StringBuffer(pressePapier.getContenu());
+		this.buffer.setBuffer(newcontenu, this.selection.getDebut(), this.selection.getLongueur()+this.selection.getDebut());	
+		selection.setDebut(selection.getDebut()+pressePapier.getContenu().length());
+		this.selection.initSelection();
+		System.out.println("Ca l'a coller : "+ this.getPressePapier().getContenu().toString());
+		notifyObservers();
 	}
 	
 	@Override
@@ -54,41 +107,29 @@ public class MoteurEdition extends Subject implements IMoteurEdition {
 		}
 		notifyObservers();
 	}
-
+	
 	@Override
-	public void couper() {
-		if(selection.getLongueur() > 0){
-			String contenuSelection = this.selection.getContenu();
-			pressePapier.setContenu(contenuSelection);
+	public void supprimer() {
+		if(this.selection.getLongueur() > 0){
 			this.buffer.getContenu().delete(this.selection.getDebut(), this.selection.getDebut()+this.selection.getLongueur());
 			this.selection.initSelection();
-			notifyObservers();
 		}
-	}
-
-	@Override
-	public void saisir(String texte) {
-		this.buffer.setBuffer(new StringBuffer(texte), this.selection.getDebut(), this.selection.getLongueur()+this.selection.getDebut());
-		this.selection.setDebut(this.selection.getDebut()+texte.length());
-		System.out.println("Buffer : "+this.buffer.getContenu().toString());
+		else{
+			int debut = this.selection.getDebut();
+			this.buffer.getContenu().delete(debut, debut+1);
+			this.selection.setDebut(debut);		
+		}
 		notifyObservers();
-	}
-
-	@Override
-	public void selectionner(Integer debut, Integer longueur) {
-		this.selection.setDebut(debut);
-		this.selection.setLongueur(longueur);
-		this.selection.setContenu(this.buffer.getContenu().toString().substring(debut, debut+longueur));
 	}
 	
 	public Buffer getBuffer(){
 		return this.buffer;
 	}
-
+	
 	public PressePapier getPressePapier(){
 		return this.pressePapier;
 	}
-
+	
 	public Selection getSelection(){
 		return this.selection;
 	}
@@ -104,6 +145,7 @@ public class MoteurEdition extends Subject implements IMoteurEdition {
 	@Override
 	public void registerObserver(Observer o) {
 		observers.add(o);
+
 	}
 
 	@Override
@@ -111,4 +153,7 @@ public class MoteurEdition extends Subject implements IMoteurEdition {
 		observers.remove(o);
 	}
 
+	
+	
 }
+

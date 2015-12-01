@@ -1,5 +1,5 @@
 package memento;
 
-public class MementoCouper implements Memento {
+public class MementoCouper extends ConcreteMemento implements Memento {
 
 }

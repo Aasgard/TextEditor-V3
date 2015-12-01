@@ -4,15 +4,15 @@ import receiver.MoteurEdition;
 
 public class Coller implements Command {
 	
-	protected MoteurEdition me;
+	protected static MoteurEdition em;
+	
+	public Coller(MoteurEdition newem){
+		em = newem;
+	}
 
-	public Coller(MoteurEdition moteure){
-		me = moteure;
+	@Override
+	public void execute() {
+		em.coller();
 	}
-	
-	public void execute(){
-		me.coller();
-		System.out.println("Commande COLLER : " + me.getBuffer().getContenu().toString());
-	}
-	
+
 }

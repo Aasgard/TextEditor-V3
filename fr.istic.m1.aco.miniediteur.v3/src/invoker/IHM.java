@@ -23,12 +23,11 @@ public class IHM extends JFrame{
 	private Command coller;
 	private Command effacer;
 	
-	private Command enregistrer;
-	private Command stop;
-	private Command rejouer;
+	private Command defaire;
+	private Command refaire;
 	
 	public IHM(){
-		this.setTitle("Editeur de texte - V2");
+		this.setTitle("Editeur de texte - V3");
 		this.setSize(new Dimension(800, 500));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -61,23 +60,19 @@ public class IHM extends JFrame{
 		bColler.setBounds(210, 10, 90, 30);
 		lesBoutons.add(bColler);
 		
-		Bouton bEnregistrer = new Bouton("Enregistrer", enregistrer);
-		bEnregistrer.setBounds(470, 10, 120, 30);
-		lesBoutons.add(bEnregistrer);
-		Bouton bStop = new Bouton("Stop", stop);
-		bStop.setBounds(600, 10, 90, 30);
-		lesBoutons.add(bStop);
-		Bouton bRejouer = new Bouton("Rejouer", rejouer);
-		bRejouer.setBounds(700, 10, 90, 30);
-		lesBoutons.add(bRejouer);
+		Bouton bDefaire = new Bouton("Defaire", defaire);
+		bDefaire.setBounds(600, 10, 90, 30);
+		lesBoutons.add(bDefaire);
+		Bouton bRefaire = new Bouton("Refaire", refaire);
+		bRefaire.setBounds(700, 10, 90, 30);
+		lesBoutons.add(bRefaire);
 		
 		this.add(bCopier);
 		this.add(bColler);
 		this.add(bCouper);
 		
-		this.add(bEnregistrer);
-		this.add(bStop);
-		this.add(bRejouer);
+		this.add(bDefaire);
+		this.add(bRefaire);
 	}
 	
 	public void launch(){
@@ -111,12 +106,10 @@ public class IHM extends JFrame{
 		this.effacer = h.get("effacer");
 		if (this.effacer == null) throw new Exception("commande \"effacer\" manquante");
 		
-		this.enregistrer = h.get("enregistrer");
-		if (this.enregistrer == null) throw new Exception("commande \"enregistrer\" manquante");
-		this.stop = h.get("stop");
-		if (this.stop == null) throw new Exception("commande \"stop\" manquante");
-		this.rejouer = h.get("rejouer");
-		if (this.rejouer == null) throw new Exception("commande \"rejouer\" manquante");
+		this.defaire = h.get("defaire");
+		if (this.defaire == null) throw new Exception("commande \"defaire\" manquante");
+		this.refaire = h.get("refaire");
+		if (this.refaire == null) throw new Exception("commande \"refaire\" manquante");
 	}
 	
 }

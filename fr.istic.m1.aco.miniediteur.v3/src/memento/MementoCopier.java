@@ -1,6 +1,6 @@
 package memento;
 
-public class MementoCopier implements Memento {
+public class MementoCopier extends ConcreteMemento implements Memento {
 	
 	/*private String contenuSelection;
 	

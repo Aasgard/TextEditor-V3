@@ -1,6 +1,6 @@
 package originator;
 
-import caretaker.Enregistreur;
+import careTaker.Enregistreur;
 import command.Selectionner;
 import invoker.IHM;
 import memento.Memento;
@@ -19,20 +19,18 @@ public class SelectionnerEnregistrable extends Selectionner implements CommandEn
 	@Override
 	public void execute() {
 		super.execute();
-		enregistreur.enregistrer(this);	
+		//enregistreur.enregistrer(this);	
 	}
 	
 	@Override
 	public Memento getMemento() {
-		System.out.println("Création memento selection : "+me.getSelection().getDebut());
-		return new MementoSelectionner(me.getSelection().getDebut(), me.getSelection().getLongueur());
+		return new MementoSelectionner(em.getSelection().getDebut(), em.getSelection().getLongueur());
 	}
 
 	@Override
 	public void setMemento(Memento memento) {
 		MementoSelectionner mem = (MementoSelectionner) memento;
-		System.out.println("Récupération de la selection : "+mem.getDebutSelection());
-		me.selectionner(mem.getDebutSelection(), mem.getLongueurSelection());
+		em.selectionner(mem.getDebutSelection(), mem.getLongueurSelection());
 	}
 
 }

@@ -1,10 +1,9 @@
 package receiver;
 
+
 public  interface IMoteurEdition {
 	
 	public void coller();
-	
-	public void effacer();
 	
 	public void copier();
 	
@@ -14,4 +13,8 @@ public  interface IMoteurEdition {
 	
 	public void selectionner(Integer debut, Integer longueur);
 	
+	public void effacer();
+
+	public void supprimer();
 }
+

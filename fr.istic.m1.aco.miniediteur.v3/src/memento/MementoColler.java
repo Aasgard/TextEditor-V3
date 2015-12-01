@@ -1,6 +1,6 @@
 package memento;
 
-public class MementoColler implements Memento {
+public class MementoColler extends ConcreteMemento implements Memento {
 
 	/*private String texte;
 	

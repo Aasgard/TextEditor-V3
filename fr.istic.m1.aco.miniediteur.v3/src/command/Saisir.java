@@ -5,19 +5,18 @@ import receiver.MoteurEdition;
 
 public class Saisir implements Command {
 	
-	protected MoteurEdition me;
+	protected MoteurEdition em;
 	protected IHM ihm;
-
-	public Saisir(MoteurEdition moteure,IHM ihmn){
-		me = moteure;
-		ihm = ihmn;
+	
+	public Saisir(MoteurEdition newem, IHM newihm){
+		em = newem;
+		ihm = newihm;
 	}
 	
-	public void execute(){
+	@Override
+	public void execute() {
 		String texte = String.valueOf(ihm.getCar());
-		System.out.println("Caractère ajouté : " + texte);
-		System.out.println("Contenu du buffer : " + me.getBuffer().getContenu().toString());
-		me.saisir(texte);
+		em.saisir(texte);
 	}
-	
+
 }

@@ -1,18 +1,12 @@
 package receiver;
 
-public class Selection {
+public class Selection implements Cloneable{
 
 	private int debut;
 	private int longueur;
 	private String contenu;
-	/*private MoteurEdition moteurEdition;*/
-	
-	
-	public Selection(int debut, int longueur, String contenu) {
-		this.debut = debut;
-		this.longueur = longueur;
-		this.contenu = contenu;
-	}
+	@SuppressWarnings("unused")
+	private MoteurEdition moteurEdition;
 	
 	public void setSelection(int debut, int longueur){
 		this.debut = debut;
@@ -46,6 +40,17 @@ public class Selection {
 	public void initSelection(){
 		this.longueur = 0;
 		this.contenu = "";
+	}
+	
+	public Object clone(){
+		Object o = null;
+		try{
+			o = super.clone();
+		}catch(CloneNotSupportedException e){
+			e.printStackTrace(System.err);
+		}
+		
+		return o;
 	}
 	
 }

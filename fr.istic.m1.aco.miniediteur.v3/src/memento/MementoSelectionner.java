@@ -1,6 +1,6 @@
 package memento;
 
-public class MementoSelectionner implements Memento {
+public class MementoSelectionner extends ConcreteMemento implements Memento {
 	private int debutSelection;
 	private int longueurSelection;
 	

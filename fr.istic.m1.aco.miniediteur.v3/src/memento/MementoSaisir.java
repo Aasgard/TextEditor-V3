@@ -1,6 +1,6 @@
 package memento;
 
-public class MementoSaisir implements Memento {
+public class MementoSaisir extends ConcreteMemento implements Memento {
 
 	private String texte;
 	

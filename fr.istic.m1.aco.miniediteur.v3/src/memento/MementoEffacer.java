@@ -1,5 +1,5 @@
 package memento;
 
-public class MementoEffacer implements Memento {
+public class MementoEffacer extends ConcreteMemento implements Memento {
 
 }
