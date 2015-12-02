@@ -1,6 +1,6 @@
 package originator;
 
-import careTaker.Enregistreur;
+import caretaker.Enregistreur;
 import command.Copier;
 import memento.Memento;
 import memento.MementoCopier;

@@ -2,7 +2,7 @@ package client;
 
 import java.util.HashMap;
 
-import careTaker.Enregistreur;
+import caretaker.Enregistreur;
 import command.*;
 import observer.IHMObserver;
 import receiver.MoteurEdition;
@@ -13,8 +13,6 @@ import originator.*;
  * l'application.
  */
 public class Client {
-	private static final int ZONE_TEXTE_ROWS = 20;
-	private static final int ZONE_TEXTE_COLS = 60;
 
 	private static MoteurEdition em;
 	private static IHMObserver ihm;

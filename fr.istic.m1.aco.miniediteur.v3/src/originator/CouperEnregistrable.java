@@ -1,6 +1,6 @@
 package originator;
 
-import careTaker.Enregistreur;
+import caretaker.Enregistreur;
 import command.Couper;
 import memento.ConcreteMemento;
 import memento.EtatMemento;

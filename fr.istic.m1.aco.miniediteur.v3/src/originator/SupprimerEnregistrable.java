@@ -1,6 +1,6 @@
 package originator;
 
-import careTaker.Enregistreur;
+import caretaker.Enregistreur;
 import command.Supprimer;
 import memento.Memento;
 import memento.MementoSupprimer;

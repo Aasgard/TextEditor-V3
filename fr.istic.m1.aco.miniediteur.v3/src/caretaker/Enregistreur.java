@@ -1,4 +1,4 @@
-package careTaker;
+package caretaker;
 
 import java.util.HashMap;
 import java.util.Stack;

@@ -1,6 +1,6 @@
 package originator;
 
-import careTaker.Enregistreur;
+import caretaker.Enregistreur;
 import command.Selectionner;
 import invoker.IHM;
 import memento.Memento;

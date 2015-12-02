@@ -1,6 +1,6 @@
 package command;
 
-import careTaker.Enregistreur;
+import caretaker.Enregistreur;
 
 public class Defaire implements Command {
 

@@ -1,6 +1,8 @@
 package invoker;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -52,19 +54,44 @@ public class IHM extends JFrame{
 	public void loadButtons(){
 		Bouton bCouper = new Bouton("Couper", couper);
 		bCouper.setBounds(10, 10, 90, 30);
+		bCouper.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				texteA.requestFocusInWindow();
+			}
+		});
 		lesBoutons.add(bCouper);
 		Bouton bCopier = new Bouton("Copier", copier);
 		bCopier.setBounds(110, 10, 90, 30);
+		bCopier.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				texteA.requestFocusInWindow();
+			}
+		});
 		lesBoutons.add(bCopier);
 		Bouton bColler = new Bouton("Coller", coller);
 		bColler.setBounds(210, 10, 90, 30);
+		bColler.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				texteA.requestFocusInWindow();
+			}
+		});
 		lesBoutons.add(bColler);
 		
 		Bouton bDefaire = new Bouton("Defaire", defaire);
 		bDefaire.setBounds(600, 10, 90, 30);
+		bDefaire.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				texteA.requestFocusInWindow();
+			}
+		});
 		lesBoutons.add(bDefaire);
 		Bouton bRefaire = new Bouton("Refaire", refaire);
 		bRefaire.setBounds(700, 10, 90, 30);
+		bRefaire.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				texteA.requestFocusInWindow();
+			}
+		});
 		lesBoutons.add(bRefaire);
 		
 		this.add(bCopier);
