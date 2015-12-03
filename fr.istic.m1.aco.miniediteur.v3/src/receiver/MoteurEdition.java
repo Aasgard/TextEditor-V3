@@ -94,17 +94,19 @@ public class MoteurEdition extends Subject implements IMoteurEdition{
 	public void effacer() {
 		int debut = this.selection.getDebut();
 		System.out.println(debut);
+		if(this.getSelection().getLongueur() == 0 && debut != 0){
+			this.buffer.getContenu().delete(debut-1, debut);
+			this.selection.setDebut(debut-1);		
+		}
 		if(this.selection.getLongueur() > 0){
+			System.out.println("la longueur "+this.selection.getLongueur());
 			this.buffer.getContenu().delete(debut, debut+this.selection.getLongueur());
 			this.selection.initSelection();
+			notifyObservers();
 		}
 		if (debut == 0 && this.selection.getLongueur() == 0){
 			notifyObservers();
 			return;
-		}
-		else{
-			this.buffer.getContenu().delete(debut-1, debut);
-			this.selection.setDebut(debut-1);		
 		}
 		notifyObservers();
 	}

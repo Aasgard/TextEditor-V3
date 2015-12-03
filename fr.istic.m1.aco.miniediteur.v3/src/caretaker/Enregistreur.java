@@ -78,9 +78,19 @@ public class Enregistreur {
 				break;
 
 			case "Effacer" :
+				if(mem.getEtatMemento().getSelection().getLongueur() != 0){
+					MementoSaisir saisie = new MementoSaisir(mem.getEtatMemento().getBufferCopie().getContenu().substring(mem.getEtatMemento().getSelection().getDebut(),mem.getEtatMemento().getSelection().getLongueur()+mem.getEtatMemento().getSelection().getDebut()));
+					saisie.getEtatMemento().getSelection().setDebut(mem.getEtatMemento().getSelection().getDebut()+1);
+					saisie.getEtatMemento().getSelection().setLongueur(0);
+					commandesEnregistrable.get("saisir").setMemento(saisie);
+				}
+				else{
 				MementoSaisir saisie = new MementoSaisir(mem.getEtatMemento().getBufferCopie().getContenu().substring(mem.getEtatMemento().getSelection().getDebut()-1,mem.getEtatMemento().getSelection().getLongueur()+mem.getEtatMemento().getSelection().getDebut()));
 				saisie.getEtatMemento().setSelection(mem.getEtatMemento().getSelection());	
+				//saisie.getEtatMemento().getSelection().setDebut(mem.getEtatMemento().getSelection().getDebut()+1);
+				saisie.getEtatMemento().getSelection().setLongueur(0);
 				commandesEnregistrable.get("saisir").setMemento(saisie);
+				}
 				break;
 			}
 			pileRefaire.push(memento);

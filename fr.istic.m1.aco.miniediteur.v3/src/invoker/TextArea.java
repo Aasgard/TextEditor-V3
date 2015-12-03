@@ -95,8 +95,8 @@ public class TextArea extends JTextArea {
 			public void keyPressed(KeyEvent e) {
 				setChangementPosition(false);
 				if (!e.isActionKey()) {
-					e.consume();
 					if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+						e.consume();
 						effacer.execute();
 						System.out.println("On appuie sur retour arriere");
 					}

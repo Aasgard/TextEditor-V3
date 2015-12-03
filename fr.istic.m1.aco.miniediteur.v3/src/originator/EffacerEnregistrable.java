@@ -23,7 +23,7 @@ public class EffacerEnregistrable extends Effacer implements CommandEnregistrabl
 
 	@Override
 	public void execute() {
-		if(em.getSelection().getDebut()!=0){
+		if(em.getSelection().getDebut()!=0 || em.getSelection().getLongueur() !=0){
 			enregistreur.enregistrer(this);
 			super.execute();	
 		}
