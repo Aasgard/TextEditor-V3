@@ -65,12 +65,16 @@ public class Enregistreur {
 			case "Coller" :
 				MementoCouper couper = new MementoCouper();
 				couper.getEtatMemento().getPressepapier().setContenu(mem.getEtatMemento().getPressepapier().getContenu());
-				couper.getEtatMemento().getSelection().setLongueur(mem.getEtatMemento().getPressepapier().getContenu().length());
+				couper.getEtatMemento().getSelection().setLongueur(mem.getEtatMemento().getPressepapier().getContenu().length()+1);
 				couper.getEtatMemento().getSelection().setDebut(mem.getEtatMemento().getSelection().getDebut());
 				commandesEnregistrable.get("couper").setMemento(couper);
-				MementoSaisir saisir = new MementoSaisir(mem.getEtatMemento().getBufferCopie().getContenu().substring(mem.getEtatMemento().getSelection().getDebut()-1,mem.getEtatMemento().getSelection().getLongueur()+mem.getEtatMemento().getSelection().getDebut()));
-				saisir.getEtatMemento().setSelection(mem.getEtatMemento().getSelection());	
-				commandesEnregistrable.get("saisir").setMemento(saisir);
+				if(mem.getEtatMemento().getSelection().getLongueur() > mem.getEtatMemento().getPressepapier().getContenu().length()){
+					MementoSaisir saisir = new MementoSaisir(mem.getEtatMemento().getBufferCopie().getContenu().substring(mem.getEtatMemento().getSelection().getDebut(),mem.getEtatMemento().getSelection().getLongueur()+mem.getEtatMemento().getSelection().getDebut()));
+					System.out.println(mem.getEtatMemento().getBufferCopie().getContenu().substring(mem.getEtatMemento().getSelection().getDebut(),mem.getEtatMemento().getSelection().getLongueur()+mem.getEtatMemento().getSelection().getDebut()));
+					saisir.getEtatMemento().getSelection().setDebut(mem.getEtatMemento().getSelection().getDebut()+1);
+					saisir.getEtatMemento().getSelection().setLongueur(0);
+					commandesEnregistrable.get("saisir").setMemento(saisir);
+				}
 				break;
 
 			case "Effacer" :
@@ -80,7 +84,7 @@ public class Enregistreur {
 				break;
 			}
 			pileRefaire.push(memento);
-	
+
 		}
 	}
 

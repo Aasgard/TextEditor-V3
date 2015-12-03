@@ -14,6 +14,7 @@ public class Buffer implements Cloneable{
 	}
 	
 	public void setBuffer(StringBuffer newContenu, int debut, int fin){
+		System.out.println("Debut de la selection "+debut +"\n fin de la selection "+fin);
 		if(fin > 0){
 			this.contenu.delete(debut, fin);
 		}

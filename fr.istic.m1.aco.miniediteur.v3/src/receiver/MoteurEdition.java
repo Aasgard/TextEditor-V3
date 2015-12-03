@@ -71,7 +71,7 @@ public class MoteurEdition extends Subject implements IMoteurEdition{
 	 */
 	@Override
 	public void saisir(String texte){
-		this.buffer.setBuffer(new StringBuffer(texte), this.selection.getDebut(), this.selection.getLongueur()+this.selection.getDebut());
+		this.buffer.setBuffer(new StringBuffer(texte), this.selection.getDebut(), this.selection.getLongueur());
 		this.selection.setDebut(this.selection.getDebut()+texte.length());
 		notifyObservers();
 	}
@@ -93,6 +93,7 @@ public class MoteurEdition extends Subject implements IMoteurEdition{
 	@Override
 	public void effacer() {
 		int debut = this.selection.getDebut();
+		System.out.println(debut);
 		if(this.selection.getLongueur() > 0){
 			this.buffer.getContenu().delete(debut, debut+this.selection.getLongueur());
 			this.selection.initSelection();

@@ -84,6 +84,7 @@ public class TextArea extends JTextArea {
 					dernierCar = e.getKeyChar();
 					saisir.execute();
 					setSelection(getDebutSelection()+1, 0);
+					
 				}
 			}
 
