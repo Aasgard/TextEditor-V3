@@ -43,6 +43,7 @@ public class SaisirEnregistrable extends Saisir implements CommandEnregistrable 
 		MementoSaisir mem = ((MementoSaisir) m);
 		int debut = mem.getEtatMemento().getSelection().getDebut();
 		int longueur = mem.getEtatMemento().getSelection().getLongueur();
+		System.out.println("longueur dans l'entrée de saisir : "+longueur);
 		em.getSelection().setSelection(debut-1, longueur);
 		String texte = mem.getTexte();
 		em.saisir(texte);

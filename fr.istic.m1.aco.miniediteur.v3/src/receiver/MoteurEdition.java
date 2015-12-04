@@ -71,7 +71,7 @@ public class MoteurEdition extends Subject implements IMoteurEdition{
 	 */
 	@Override
 	public void saisir(String texte){
-		this.buffer.setBuffer(new StringBuffer(texte), this.selection.getDebut(), this.selection.getLongueur());
+		this.buffer.setBuffer(new StringBuffer(texte), this.selection.getDebut(), this.selection.getLongueur()+this.selection.getDebut());
 		this.selection.setDebut(this.selection.getDebut()+texte.length());
 		notifyObservers();
 	}
