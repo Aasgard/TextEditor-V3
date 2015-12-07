@@ -51,6 +51,10 @@ public class Enregistreur {
 		addMemento(commandEnregistrable.getMemento());
 	}
 
+	/**
+	 * Refaire récupère le memento en haut de la pile refaire puis l'execute.
+	 * Puis l'ajoute à la pile defaire.
+	 */
 	public void refaire(){
 		if(!pileRefaire.isEmpty()){
 			Memento memento = pileRefaire.pop();
@@ -61,6 +65,10 @@ public class Enregistreur {
 		}
 	}
 
+	/**
+	 * Récupère le memento de la pile defaire, l'ajoute à la pile refaire
+	 * Puis appel son memento inverse ( couper appelle coller , saisir appelle effacer...)
+	 */
 	public void defaire(){
 		aDefait = true;
 		if(!pileDefaire.isEmpty()){
