@@ -6,10 +6,17 @@ public class Defaire implements Command {
 
 	private Enregistreur enregistreur;
 	
+	/**
+	 * Constructeur par défaut de la classe Defaire.
+	 * @param enregistreur
+	 */
 	public Defaire(Enregistreur enregistreur){
 		this.enregistreur = enregistreur;
 	}
 	
+	/**
+	 * Appel de la fonction defaire() de l'enregistreur.
+	 */
 	@Override
 	public void execute() {
 		enregistreur.defaire();

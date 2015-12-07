@@ -17,7 +17,7 @@ public class Bouton extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.execute();
-			}
+			} 
 		});
 	}
 	

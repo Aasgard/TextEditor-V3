@@ -8,10 +8,6 @@ import observer.IHMObserver;
 import receiver.MoteurEdition;
 import originator.*;
 
-/**
- * Classe principale : instancie et relie les diffÃ©rents composants de
- * l'application.
- */
 public class Client {
 
 	private static MoteurEdition em;
@@ -20,6 +16,15 @@ public class Client {
 	private static HashMap<String, Command> commandes;
 	private static HashMap<String, CommandEnregistrable> commandEnregistrable;
 
+	/**
+	 * Classe principale de lancement.
+	 * Création d'un MoteurEdition et de l'IHM avec le ME en paramètre (attribution).
+	 * Création d'un enregistreur.
+	 * Création des commandes ainsi que des commandes enregistrables
+	 * @param args : Paramètre de base
+	 * @throws Exception : Exception lancée si erreur
+	 */
+	
 	public static void main(String[] args) throws Exception {
 		// initialisation
 		em = new MoteurEdition();
@@ -28,7 +33,7 @@ public class Client {
 		//Création de l'enregistreur
 		enregistreur = new Enregistreur();
 		
-		// crÃ©ation des commandes
+		// Création des commandes
 		commandes = new HashMap<String, Command>();
 		
 		CouperEnregistrable couper = new CouperEnregistrable(em, enregistreur);
@@ -66,7 +71,6 @@ public class Client {
 		// mise en place de l'observer
 		em.registerObserver(ihm);
 
-		// finalisation de l'ihm
 		/* Finalisation de l'IHM */
 		ihm.createTextArea();
 		ihm.loadButtons();

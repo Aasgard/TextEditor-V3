@@ -24,13 +24,13 @@ public class SelectionnerEnregistrable extends Selectionner implements CommandEn
 	
 	@Override
 	public Memento getMemento() {
-		return new MementoSelectionner(em.getSelection().getDebut(), em.getSelection().getLongueur());
+		return new MementoSelectionner(me.getSelection().getDebut(), me.getSelection().getLongueur());
 	}
 
 	@Override
 	public void setMemento(Memento memento) {
 		MementoSelectionner mem = (MementoSelectionner) memento;
-		em.selectionner(mem.getDebutSelection(), mem.getLongueurSelection());
+		me.selectionner(mem.getDebutSelection(), mem.getLongueurSelection());
 	}
 
 }

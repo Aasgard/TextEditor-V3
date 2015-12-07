@@ -18,16 +18,31 @@ public class Enregistreur {
 	private Stack<Memento> pileRefaire;
 	private Stack<Memento> pileDefaire;
 
+	/**
+	 * Constructeur de l'Enregistreur.
+	 * Initialise les piles refaire et defaire.
+	 * Ainsi que les commandes enregistrables.
+	 */
 	public Enregistreur(){
 		this.pileDefaire = new Stack<Memento>();
 		this.pileRefaire = new Stack<Memento>();
 		this.commandesEnregistrable = new HashMap<String, CommandEnregistrable>();
 	}
 
+	/**
+	 * Ajoute le Memento passé en paramètre à la pile defaire de l'Enregistreur.
+	 * @param memento
+	 */
 	public void addMemento(Memento memento){
 		pileDefaire.push(memento);
 	}
 
+	/**
+	 * Enregistre la commande enregistrable.
+	 * Si on a defait précédemment on réinitialise la pile refaire et on passe defaire à faux.
+	 * Récupere son Memento puis l'ajoute à la pile  de l'Enregistreur.
+	 * @param commandEnregistrable
+	 */
 	public void enregistrer(CommandEnregistrable commandEnregistrable){
 		if(aDefait){
 			pileRefaire.clear();
@@ -87,7 +102,6 @@ public class Enregistreur {
 				else{
 				MementoSaisir saisie = new MementoSaisir(mem.getEtatMemento().getBufferCopie().getContenu().substring(mem.getEtatMemento().getSelection().getDebut()-1,mem.getEtatMemento().getSelection().getLongueur()+mem.getEtatMemento().getSelection().getDebut()));
 				saisie.getEtatMemento().setSelection(mem.getEtatMemento().getSelection());	
-				//saisie.getEtatMemento().getSelection().setDebut(mem.getEtatMemento().getSelection().getDebut()+1);
 				saisie.getEtatMemento().getSelection().setLongueur(0);
 				commandesEnregistrable.get("saisir").setMemento(saisie);
 				}
