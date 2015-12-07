@@ -1,7 +1,8 @@
-/receiver/
-/originator/
+/caretaker/
 /client/
 /command/
-/observer/
 /invoker/
-/caretaker/
+/memento/
+/observer/
+/originator/
+/receiver/

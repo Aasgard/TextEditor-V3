@@ -18,8 +18,7 @@ public class SelectionnerEnregistrable extends Selectionner implements CommandEn
 
 	@Override
 	public void execute() {
-		super.execute();
-		//enregistreur.enregistrer(this);	
+		super.execute();	
 	}
 	
 	@Override
