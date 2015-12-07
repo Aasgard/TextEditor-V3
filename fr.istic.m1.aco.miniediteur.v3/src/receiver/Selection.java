@@ -10,7 +10,6 @@ public class Selection implements Cloneable{
 	 * Constructeur par défaut de la classe Sélection.
 	 * @param debut : début de la Sélection
 	 * @param longueur : longueur de la Sélection
-	 * @param contenu : contenu de la Sélection
 	 */
 	public void setSelection(int debut, int longueur){
 		this.debut = debut;
@@ -19,8 +18,7 @@ public class Selection implements Cloneable{
 	
 	/**
 	 * Changement des paramètres de la Sélection courante
-	 * @param debut : nouveau début de la Sélection
-	 * @param longueur : nouvelle longueur de la Sélection
+	 * @return int : Retourne le début de la Selection
 	 */
 	public int getDebut() {
 		return debut;
@@ -28,7 +26,7 @@ public class Selection implements Cloneable{
 
 	/**
 	 * Retourne le début de la Sélection
-	 * @return : début de la Sélection
+	 * @param debut : debut de la selection
 	 */
 	public void setDebut(int debut) {
 		this.debut = debut;
@@ -36,7 +34,7 @@ public class Selection implements Cloneable{
 	
 	/**
 	 * Change la valeur de début de la Sélection
-	 * @param debut : int, début de la Sélection
+	 * @return int : longueur de la selection
 	 */
 	public int getLongueur() {
 		return longueur;

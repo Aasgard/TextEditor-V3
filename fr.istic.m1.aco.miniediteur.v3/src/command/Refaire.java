@@ -9,7 +9,7 @@ public class Refaire implements Command {
 	
 	/**
 	 * Constructeur par défaut de la classe Refaire.
-	 * @param enregistreur
+	 * @param enregistreur : Enregistreur à refaire
 	 */
 	public Refaire(Enregistreur enregistreur){
 		this.enregistreur = enregistreur;

@@ -8,7 +8,7 @@ public class Defaire implements Command {
 	
 	/**
 	 * Constructeur par défaut de la classe Defaire.
-	 * @param enregistreur
+	 * @param enregistreur : Enregistreur à défaire
 	 */
 	public Defaire(Enregistreur enregistreur){
 		this.enregistreur = enregistreur;
