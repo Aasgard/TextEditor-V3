@@ -42,7 +42,6 @@ public class Client {
 		SaisirEnregistrable saisir = new SaisirEnregistrable(em, ihm, enregistreur);
 		SelectionnerEnregistrable selectionner =  new SelectionnerEnregistrable(em, ihm, enregistreur);
 		EffacerEnregistrable effacer = new EffacerEnregistrable(em, enregistreur);
-		SupprimerEnregistrable supprimer = new SupprimerEnregistrable(em, enregistreur);
 		
 		commandes.put("couper", couper);
 		commandes.put("copier", copier);
@@ -50,7 +49,6 @@ public class Client {
 		commandes.put("selectionner", selectionner);
 		commandes.put("saisir", saisir);
 		commandes.put("effacer", effacer);
-		commandes.put("supprimer", supprimer);
 		commandes.put("refaire", new Refaire(enregistreur));
 		commandes.put("defaire", new Defaire(enregistreur));
 		ihm.setCommands(commandes);
@@ -65,7 +63,6 @@ public class Client {
 		commandEnregistrable.put("saisir", saisir);
 		commandEnregistrable.put("selectionner", selectionner);
 		commandEnregistrable.put("effacer", effacer);
-		commandEnregistrable.put("supprimer", supprimer);
 		enregistreur.setCommandesEnregistrable(commandEnregistrable);
 		
 		// mise en place de l'observer

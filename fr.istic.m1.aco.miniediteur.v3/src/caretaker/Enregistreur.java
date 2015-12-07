@@ -126,8 +126,6 @@ public class Enregistreur {
 			throw new Exception("commande \"selectionner\" manquante");
 		if (h.get("effacer") == null)
 			throw new Exception("commande \"effacer\" manquante");
-		if (h.get("supprimer") == null)
-			throw new Exception("commande \"supprimer\" manquante");
 		commandesEnregistrable = h;
 	}
 }

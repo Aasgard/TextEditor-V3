@@ -125,20 +125,6 @@ public class MoteurEdition extends Subject implements IMoteurEdition{
 		notifyObservers();
 	}
 	
-	@Override
-	public void supprimer() {
-		if(this.selection.getLongueur() > 0){
-			this.buffer.getContenu().delete(this.selection.getDebut(), this.selection.getDebut()+this.selection.getLongueur());
-			this.selection.initSelection();
-		}
-		else{
-			int debut = this.selection.getDebut();
-			this.buffer.getContenu().delete(debut, debut+1);
-			this.selection.setDebut(debut);		
-		}
-		notifyObservers();
-	}
-	
 	/**
 	 * Retourne le buffer.
 	 * @return : le Buffer
