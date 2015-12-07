@@ -15,6 +15,5 @@ public  interface IMoteurEdition {
 	
 	public void effacer();
 
-	public void supprimer();
 }
 
