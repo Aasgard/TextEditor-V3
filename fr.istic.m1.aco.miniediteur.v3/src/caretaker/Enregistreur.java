@@ -31,7 +31,7 @@ public class Enregistreur {
 
 	/**
 	 * Ajoute le Memento passé en paramètre à la pile defaire de l'Enregistreur.
-	 * @param memento
+	 * @param memento : Un memento
 	 */
 	public void addMemento(Memento memento){
 		pileDefaire.push(memento);
@@ -41,7 +41,7 @@ public class Enregistreur {
 	 * Enregistre la commande enregistrable.
 	 * Si on a defait précédemment on réinitialise la pile refaire et on passe defaire à faux.
 	 * Récupere son Memento puis l'ajoute à la pile  de l'Enregistreur.
-	 * @param commandEnregistrable
+	 * @param commandEnregistrable : CommandeEnregistrable
 	 */
 	public void enregistrer(CommandEnregistrable commandEnregistrable){
 		if(aDefait){
